@@ -3,16 +3,18 @@
  */
 import React, { Component } from 'react';
 
-const TodoItem = (props) => {
-  return (
-    <label>
-      <input
-        type="checkbox"
-        checked={props.checked}
-        readOnly={true} />
-      {props.text}
-    </label>
-  );
-};
+class TodoItem extends Component {
+  render() {
+    return (
+      <label>
+        <input
+          type="checkbox"
+          checked={this.props.checked}
+          readOnly={true} />
+        {this.props.text}
+      </label>
+    );
+  }
+}
 
 export default TodoItem;
