@@ -10,3 +10,51 @@
  */
 import React, { Component } from 'react';
 import Plotly from 'plotly.js/dist/plotly.js';
+
+class Plot extends Component {
+  render() {
+    return <div ref={(element) => { this.element = element; }}></div>;
+  }
+
+  componentDidMount() {
+    this.createPlot(
+      this.props.xData,
+      this.props.yData,
+      this.props.type
+    );
+  }
+
+  componentDidUpdate(nextProps) {
+    this.createPlot(
+      this.props.xData,
+      this.props.yData,
+      this.props.type
+    );
+  }
+
+    shouldComponentUpdate(nextProps) {
+      // use JSON.stringfy or PureComponent -> shallowEqual(a, b) -> might be imperformant
+      return !(
+        this.props.xData === nextProps.xData &&
+        this.props.yData === nextProps.yData
+      );
+    }
+
+  createPlot = (x, y, type) => {
+    Plotly.newPlot(this.element, [{
+      x: x,
+      y: y,
+      type: type
+    }], {
+      margin: {
+        t: 0, r: 0, l: 30
+      },
+      xaxis: {
+        gridcolor: 'transparent'
+      }
+    }, {
+      displayModeBar: false
+    });
+  }
+}
+export default Plot;
