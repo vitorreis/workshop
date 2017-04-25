@@ -5,3 +5,23 @@
  * - addItem
  * - editInput
  */
+
+ export const checkItem = (text) => {
+   return {
+     type: 'CHECK_ITEM',
+     text
+   }
+ }
+
+ export const addItem = () => {
+   return {
+     type: 'ADD_ITEM',
+   }
+ }
+
+ export const editInput = (text) => {
+   return {
+     text,
+     type: 'EDIT_INPUT'
+   }
+ }
